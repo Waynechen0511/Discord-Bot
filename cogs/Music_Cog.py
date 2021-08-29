@@ -23,6 +23,7 @@ class Music(commands.Cog):
             return link
     '''
 
+    # Joins the voice channel
     @commands.command(pass_context=True)
     async def join(self, ctx):
         # Connect if the user is already in a voice channel
@@ -32,6 +33,7 @@ class Music(commands.Cog):
         else:
             await ctx.send("You are not currently in a voice channel, please join one.")
 
+    # Leaves the voice channel
     @commands.command(pass_context=True)
     async def leave(self, ctx):
         # Disconnects if the bot is currently in a voice channel
@@ -40,6 +42,7 @@ class Music(commands.Cog):
         else:
             await ctx.send("Bot is not in a voice channel.")
 
+    # Plays a song in the voice channel
     @commands.command(pass_context=True)
     async def play(self, ctx, url):
         channel = ctx.voice_client
