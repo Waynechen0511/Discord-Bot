@@ -1,6 +1,15 @@
+from shlex import join
 import discord
 from discord.ext import commands
 import youtube_dl
+
+async def join_func(self, ctx):
+    # Connect if the user is already in a voice channel
+    if ctx.author.voice:
+        channel = ctx.author.voice.channel
+        await channel.connect()
+    else:
+        await ctx.send("You are not currently in a voice channel, please join one.")
 
 class Music(commands.Cog):
 
@@ -26,15 +35,10 @@ class Music(commands.Cog):
     # Joins the voice channel
     @commands.command(pass_context=True)
     async def join(self, ctx):
-        # Connect if the user is already in a voice channel
-        if ctx.author.voice:
-            channel = ctx.author.voice.channel
-            await channel.connect()
-        else:
-            await ctx.send("You are not currently in a voice channel, please join one.")
+        await join_func(self, ctx)
 
     # Leaves the voice channel
-    @commands.command(pass_context=True)
+    @commands.command(pass_context=True, aliases=['disconnect'])
     async def leave(self, ctx):
         # Disconnects if the bot is currently in a voice channel
         if ctx.voice_client:
@@ -45,6 +49,7 @@ class Music(commands.Cog):
     # Plays a song in the voice channel
     @commands.command(pass_context=True)
     async def play(self, ctx, url):
+        await join_func(self,ctx)
         channel = ctx.voice_client
         with youtube_dl.YoutubeDL(self.YDL_OPTIONS) as ydl:
             info = ydl.extract_info(url, download = False)
