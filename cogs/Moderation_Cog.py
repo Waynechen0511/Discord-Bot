@@ -5,10 +5,8 @@ class Moderation(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-
-    @commands.Cog.listener()
-    async def on_ready(self):
         print("Moderation Cogs is now online")
+        
 
     @commands.command()
     async def ping(self, ctx):
