@@ -1,4 +1,3 @@
-from shlex import join
 import discord
 from discord.ext import commands
 import youtube_dl
@@ -18,16 +17,15 @@ class Music(commands.Cog):
         self.music_queue = []
         self.YDL_OPTIONS = {'format': 'bestaudio'}
         self.FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
+        self.vc = ""
         print("Music Cogs is now online")
 
-    '''
-    def youtube_search(self, title):
-        with youtube_dl.YoutubeDL(self.YDL_OPTIONS) as ydl:
-            info = ydl.extract_info(title, download = False)
-            url = info["formats"][0]["url"]
-            link = discord.FFmpegOpusAudio.from_probe(url, ** self.FFMPEG_OPTIONS)
-            return link
-    '''
+    def search_yt(self, item):
+        with YoutubeDL(self.YDL_OPTIONS) as ydl:
+            try: 
+                info = ydl.extract_info("ytsearch:%s" % item, download=False)['entries'][0]
+            except Exception: 
+                return False
 
     # Joins the voice channel
     @commands.command(pass_context=True)
