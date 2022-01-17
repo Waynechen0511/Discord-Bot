@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from modules.ahttp import AIOHTTP
 from dotenv import load_dotenv
 import os
 import random
