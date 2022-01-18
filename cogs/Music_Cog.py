@@ -36,7 +36,7 @@ class Music(commands.Cog):
         else:
             await ctx.send("Bot is not in a voice channel.")
 
-         #searching the item on youtube
+    #searching the item on youtube
     def search_yt(self, item):
         with YoutubeDL(self.YDL_OPTIONS) as ydl:
             try: 
@@ -46,7 +46,7 @@ class Music(commands.Cog):
 
         return {'source': info['formats'][0]['url'], 'title': info['title']}
 
-
+    # Plays the next songs
     def play_next(self, ctx):
         if len(self.queue) > 0:
             self.is_playing = True
@@ -63,7 +63,7 @@ class Music(commands.Cog):
         else:
             self.is_playing = False
 
-    # infinite loop checking 
+    # Plays the first song
     async def play_music(self, ctx):
         if len(self.queue) > 0:
             self.is_playing = True
