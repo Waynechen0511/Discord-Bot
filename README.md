@@ -4,7 +4,7 @@ Hunt Bot is a discord bot written using [discord.py](https://github.com/Rapptz/d
 ### Moderation Features
 Hunt Bot is able to perform various moderation activities such as clearing messages and managing users.
 
-### Music Features
+### Music Features (Outdated)
 Hunt can perform youtube video searches and play audio. It also includes queueing songs.
 
 ### Meme Features
@@ -12,3 +12,6 @@ Hunt can generate various memes with [Mime](https://mime.nathanferns.xyz/playgro
 
 ### Image Searching
 Hunt performs an image search and sends it in chat.
+
+
+Due to changes with youtube-dl, the music features no longer work
