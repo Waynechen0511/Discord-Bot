@@ -11,13 +11,16 @@ class ImageSearch(commands.Cog):
 
     @commands.command(aliases=["img"])
     async def image(self, ctx, *, query):
+
+
+
         results = DDGS().images(query, max_results=1)
 
-        try:
-            result = results[0]
-        except StopIteration:
+        if not results:
             await ctx.send("No images found.")
             return
+
+        result = results[0]
 
         image_url = result["image"]
 
