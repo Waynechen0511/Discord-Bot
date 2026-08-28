@@ -3,7 +3,6 @@ import discord
 from discord.ext import commands
 from ddgs import DDGS
 
-
 class ImageSearch(commands.Cog):
 
     def __init__(self, bot):
@@ -13,7 +12,9 @@ class ImageSearch(commands.Cog):
     @commands.command(aliases=["img"])
     async def image(self, ctx, *, query):
 
-        results = DDGS().images(query, max_results=10)
+
+
+        results = DDGS().images(query, max_results=10, safesearch="on")
 
         if not results:
             await ctx.send("No images found.")
