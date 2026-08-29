@@ -12,8 +12,6 @@ class ImageSearch(commands.Cog):
     @commands.command(aliases=["img"])
     async def image(self, ctx, *, query):
 
-
-
         results = DDGS().images(query, max_results=10, safesearch="on")
 
         if not results:
